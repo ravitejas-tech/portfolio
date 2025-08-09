@@ -1,14 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Sparkles } from "lucide-react";
+import { useNavigate, useLocation } from "react-router";
 
 const navItems = [
-    "Home",
-    "About Me",
-    "Experience",
-    "Projects",
-    "Tech Stack",
-    "Contact",
+    { name: "Home", path: "/" },
+    { name: "About Me", path: "/about" },
+    { name: "Experience", path: "/experience" },
+    { name: "Projects", path: "/projects" },
+    { name: "Tech Stack", path: "/tech-stack" },
+    { name: "Contact", path: "/contact" },
 ];
 
 const headerVariants = {
@@ -22,6 +23,7 @@ const headerVariants = {
         },
     },
 };
+
 const navItemVariants = {
     hidden: { y: -30, opacity: 0 },
     visible: {
@@ -32,8 +34,16 @@ const navItemVariants = {
 
 const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
-    const [activeSection, setActiveSection] = useState("Home");
     const [scrolled, setScrolled] = useState(false);
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const activeSection = useMemo(() => {
+        const currentItem = navItems.find(
+            (item) => item.path === location.pathname
+        );
+        return currentItem ? currentItem.name : "Home";
+    }, [location]);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -42,6 +52,14 @@ const Header = () => {
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
+
+    const handleNavigation = useCallback(
+        (item: (typeof navItems)[0]) => {
+            navigate(item.path);
+            setIsOpen(false);
+        },
+        [navigate]
+    );
 
     return (
         <motion.header
@@ -61,6 +79,7 @@ const Header = () => {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.3, duration: 0.6 }}
                         className="flex items-center space-x-2 group cursor-pointer"
+                        onClick={() => navigate("/")}
                     >
                         <motion.div
                             animate={{ rotate: [0, 360] }}
@@ -81,7 +100,7 @@ const Header = () => {
                     <nav className="hidden md:flex items-center space-x-8">
                         {navItems.map((item, index) => (
                             <motion.button
-                                key={item}
+                                key={item.name}
                                 variants={navItemVariants}
                                 initial="hidden"
                                 animate="visible"
@@ -90,19 +109,18 @@ const Header = () => {
                                     duration: 0.5,
                                     ease: "easeOut",
                                 }}
-                                onClick={() => {
-                                    setActiveSection(item);
-                                    setIsOpen(false);
-                                }}
+                                onClick={() => handleNavigation(item)}
                                 className={`relative text-sm lg:text-base font-medium transition-all duration-300 group ${
-                                    activeSection === item
+                                    activeSection === item.name
                                         ? "text-primary-500 scale-105"
                                         : "text-gray-700 dark:text-white-200 hover:text-primary-400 hover:scale-102"
                                 }`}
                             >
-                                <span className="relative z-10">{item}</span>
+                                <span className="relative z-10">
+                                    {item.name}
+                                </span>
 
-                                {activeSection === item && (
+                                {activeSection === item.name && (
                                     <motion.div
                                         layoutId="activeUnderline"
                                         className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-primary-400 to-primary-600 rounded-full"
@@ -182,27 +200,26 @@ const Header = () => {
                                 <nav className="flex-1 space-y-1">
                                     {navItems.map((item, index) => (
                                         <motion.button
-                                            key={item}
+                                            key={item.name}
                                             initial={{ y: -20, opacity: 0 }}
                                             animate={{ y: 0, opacity: 1 }}
                                             transition={{
                                                 delay: index * 0.1,
                                                 duration: 0.4,
                                             }}
-                                            onClick={() => {
-                                                setActiveSection(item);
-                                                setIsOpen(false);
-                                            }}
+                                            onClick={() =>
+                                                handleNavigation(item)
+                                            }
                                             className={`relative w-full text-left px-4 py-3 font-medium transition-all duration-300 group ${
-                                                activeSection === item
+                                                activeSection === item.name
                                                     ? "text-primary-500 scale-105"
                                                     : "text-gray-700 dark:text-white-200 hover:text-primary-400 hover:scale-102"
                                             }`}
                                         >
-                                            {/* Content */}
                                             <span className="relative z-10 flex items-center justify-between">
-                                                {item}
-                                                {activeSection === item && (
+                                                {item.name}
+                                                {activeSection ===
+                                                    item.name && (
                                                     <motion.div
                                                         initial={{
                                                             scale: 0,
@@ -217,7 +234,7 @@ const Header = () => {
                                                 )}
                                             </span>
 
-                                            {activeSection === item && (
+                                            {activeSection === item.name && (
                                                 <motion.div
                                                     layoutId="mobileActiveIndicator"
                                                     className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-primary-400 to-primary-600 rounded-r-full"
