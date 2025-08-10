@@ -9,7 +9,7 @@ const experiences = [
         company: "BOP Consultancy and Services, Pune",
         type: "On-site",
         description:
-            "Working as a frontend developer, and learning backend skills while working on backend tasks and collaborated with UI/UX designers and testers",
+            "Contributing as a Frontend Developer while actively expanding backend development skills through hands-on tasks. Collaborated closely with UI/UX designers and QA teams to deliver user-friendly, high-performance applications. Involved in end-to-end development, from planning to deployment, ensuring seamless integration between frontend and backend systems.",
         techStack: [
             "React Native",
             "Remix JS",
@@ -25,13 +25,13 @@ const experiences = [
             {
                 name: "Synergy",
                 description:
-                    "A yoga appointment booking mobile application using react native, Nest JS, TypeORM and MySQL and backoffice in Refine. Done payment gateway integration using cashfree, integrated notification system using Novu. Handled all user roles Admin, Center Admin, Therapist and Patient across the entire system.",
+                    "Developed a comprehensive yoga appointment booking mobile application using React Native, Nest JS, TypeORM, and MySQL, with a back-office panel built in Refine. Integrated Cashfree for secure payment processing and Novu for a real-time notification system. Implemented robust role-based access controls for Admin, Center Admin, Therapist, and Patient, ensuring smooth workflow across the platform.",
                 status: "Link available soon",
             },
             {
                 name: "Surge",
                 description:
-                    "A telegram mini app. A crypto swiping game, predict pump or dump on crypto coins (Bitcoin and etc.), Created features like Leaderboards, Surge AI for recommendations, User tasks, User wallets, game currencies, Statistics and Analytics. Participated in frontend and backend Remix JS, Nest JS, TypeORM, MySQL.",
+                    "Built a Telegram Mini App — a crypto prediction game where users forecast coin movements (e.g., Bitcoin pump/dump). Developed features including Leaderboards, AI-powered recommendations (Surge AI), gamified tasks, multi-currency wallet system, and advanced statistics dashboards. Worked across both frontend and backend using Remix JS, Nest JS, TypeORM, and MySQL.",
                 status: "Link available soon",
             },
         ],
@@ -44,7 +44,7 @@ const experiences = [
         company: "Aptitude Guru Hem, Chennai",
         type: "Remote",
         description:
-            "Worked as a MERN Stack intern developing full-stack applications and gaining experience in modern web development technologies",
+            "Completed a remote internship as a MERN Stack Developer, building full-stack applications with a focus on scalable architecture, efficient data handling, and user-centric design. Strengthened expertise in modern JavaScript frameworks and database management while working in an agile environment.",
         techStack: [
             "MongoDB",
             "Express.js",
@@ -56,7 +56,7 @@ const experiences = [
             {
                 name: "Recruitment Management System (RMS)",
                 description:
-                    "Created a system for recruiters and students to easily apply for jobs by adding features like bulk apply, analytics, exams, notifications etc.",
+                    "Engineered a web-based recruitment platform enabling recruiters and students to connect seamlessly. Implemented key features such as bulk job applications, analytical dashboards, online exams, and instant notifications, improving efficiency and user engagement for both stakeholders.",
                 status: "Completed",
             },
         ],
@@ -80,7 +80,6 @@ export default function () {
                             }}
                         >
                             <div className="bg-white dark:bg-black-800 rounded-2xl p-8 lg:p-10 shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all duration-300 relative overflow-hidden">
-                                {/* Subtle Background Glow */}
                                 <motion.div
                                     className="absolute inset-0 bg-gradient-to-r from-primary-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                                     initial={{ x: "-100%" }}
@@ -88,7 +87,6 @@ export default function () {
                                     transition={{ duration: 1.5 }}
                                 />
 
-                                {/* Header Section */}
                                 <motion.div
                                     className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-6"
                                     initial={{ opacity: 0, x: -30 }}
@@ -133,7 +131,6 @@ export default function () {
                                     </div>
                                 </motion.div>
 
-                                {/* Description */}
                                 <motion.p
                                     className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed mb-8"
                                     initial={{ opacity: 0, y: 20 }}
@@ -146,9 +143,8 @@ export default function () {
                                     {exp.description}
                                 </motion.p>
 
-                                {/* Tech Stack */}
                                 <motion.div
-                                    className="mb-8"
+                                    className="mb-8 relative"
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{
@@ -156,40 +152,67 @@ export default function () {
                                         delay: 0.8 + index * 0.3,
                                     }}
                                 >
-                                    <h5 className="font-heading font-bold text-gray-800 dark:text-gray-200 mb-4">
+                                    <h5 className="font-heading font-bold text-gray-800 dark:text-gray-200 mb-6">
                                         Tech Stack
                                     </h5>
-                                    <div className="flex flex-wrap gap-3">
-                                        {exp.techStack.map(
-                                            (tech, techIndex) => (
-                                                <motion.span
-                                                    key={tech}
-                                                    className="px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg border border-gray-200 dark:border-gray-600 hover:border-primary-500/50 hover:bg-primary-500/10 hover:text-primary-500 transition-all duration-300"
-                                                    initial={{
-                                                        opacity: 0,
-                                                        scale: 0.8,
-                                                    }}
-                                                    animate={{
-                                                        opacity: 1,
-                                                        scale: 1,
-                                                    }}
-                                                    transition={{
-                                                        duration: 0.4,
-                                                        delay:
-                                                            1 +
-                                                            index * 0.3 +
-                                                            techIndex * 0.1,
-                                                    }}
-                                                    whileHover={{ scale: 1.05 }}
-                                                >
-                                                    {tech}
-                                                </motion.span>
-                                            )
-                                        )}
+
+                                    <div className="relative">
+                                        <div className="flex flex-wrap gap-2 items-center">
+                                            {exp.techStack.map(
+                                                (tech, techIndex) => (
+                                                    <motion.span
+                                                        key={tech}
+                                                        className="relative px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-transparent border border-gray-200 dark:border-gray-600 rounded-full hover:border-primary-400 dark:hover:border-primary-400 hover:text-primary-600 dark:hover:text-primary-400 transition-all duration-300 group/tech"
+                                                        initial={{
+                                                            opacity: 0,
+                                                            scale: 0.8,
+                                                        }}
+                                                        animate={{
+                                                            opacity: 1,
+                                                            scale: 1,
+                                                        }}
+                                                        transition={{
+                                                            duration: 0.4,
+                                                            delay:
+                                                                1 +
+                                                                index * 0.3 +
+                                                                techIndex *
+                                                                    0.05,
+                                                            type: "spring",
+                                                            bounce: 0.3,
+                                                        }}
+                                                        whileHover={{
+                                                            scale: 1.05,
+                                                            transition: {
+                                                                duration: 0.2,
+                                                            },
+                                                        }}
+                                                    >
+                                                        <motion.div className="absolute inset-0 bg-gradient-to-r from-primary-500/5 via-primary-400/10 to-primary-500/5 rounded-full opacity-0 group-hover/tech:opacity-100 transition-opacity duration-300" />
+
+                                                        <motion.div className="absolute -left-1 top-1/2 transform -translate-y-1/2 w-2 h-2 bg-primary-500 rounded-full opacity-0 group-hover/tech:opacity-100 scale-0 group-hover/tech:scale-100 transition-all duration-300" />
+
+                                                        <span className="relative z-10">
+                                                            {tech}
+                                                        </span>
+                                                    </motion.span>
+                                                )
+                                            )}
+                                        </div>
+
+                                        <motion.div
+                                            className="absolute -bottom-3 left-0 h-px bg-gradient-to-r from-transparent via-primary-200 dark:via-primary-700 to-transparent opacity-30"
+                                            initial={{ width: 0 }}
+                                            animate={{ width: "100%" }}
+                                            transition={{
+                                                duration: 1.2,
+                                                delay: 1.5 + index * 0.3,
+                                                ease: "easeOut",
+                                            }}
+                                        />
                                     </div>
                                 </motion.div>
 
-                                {/* Projects */}
                                 <motion.div
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
@@ -245,7 +268,6 @@ export default function () {
                     ))}
                 </div>
 
-                {/* Floating Elements (same as home) */}
                 <motion.div
                     className="absolute top-20 left-10 w-4 h-4 bg-primary-400 rounded-full opacity-60"
                     animate={{
