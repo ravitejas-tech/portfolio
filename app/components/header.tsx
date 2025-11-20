@@ -34,7 +34,6 @@ const navItemVariants = {
 
 const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
-    const [scrolled, setScrolled] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -44,14 +43,6 @@ const Header = () => {
         );
         return currentItem ? currentItem.name : "Home";
     }, [location]);
-
-    useEffect(() => {
-        const handleScroll = () => {
-            setScrolled(window.scrollY > 30);
-        };
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
 
     const handleNavigation = useCallback(
         (item: (typeof navItems)[0]) => {
@@ -66,11 +57,7 @@ const Header = () => {
             variants={headerVariants as any}
             initial="hidden"
             animate="visible"
-            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-                scrolled
-                    ? "bg-white-50/95 dark:bg-black-900/95 backdrop-blur-xl shadow-xl border-b border-primary-400/30"
-                    : "bg-gradient-to-r from-white-50/80 via-white-50/60 to-white-50/80 dark:from-black-900/80 dark:via-black-900/60 dark:to-black-900/80"
-            }`}
+            className={`fixed top-0 left-0 right-0 z-50 bg-transparent transition-all duration-300`}
         >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-16 lg:h-20">
@@ -81,19 +68,8 @@ const Header = () => {
                         className="flex items-center space-x-2 group cursor-pointer"
                         onClick={() => navigate("/")}
                     >
-                        <motion.div
-                            animate={{ rotate: [0, 360] }}
-                            transition={{
-                                duration: 20,
-                                repeat: Infinity,
-                                ease: "linear",
-                            }}
-                            className="relative"
-                        >
-                            <Sparkles className="w-6 h-6 text-primary-500 group-hover:text-primary-400" />
-                        </motion.div>
                         <h1 className="text-2xl lg:text-3xl font-bold bg-gradient-to-r from-primary-500 via-primary-400 to-primary-600 bg-clip-text text-transparent group-hover:from-primary-400 group-hover:to-primary-500 transition-all duration-300">
-                            Ravi Teja
+                            DEV
                         </h1>
                     </motion.div>
 
