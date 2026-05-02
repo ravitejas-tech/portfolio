@@ -9,7 +9,7 @@ export default defineConfig({
     proxy: {
       // Proxy /api/* to local Express server during development
       "/api": {
-        target: "http://localhost:3001",
+        target: "https://portfolio-tuz6.onrender.com",
         changeOrigin: true,
       },
     },
