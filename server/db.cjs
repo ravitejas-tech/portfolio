@@ -1,5 +1,5 @@
 // server/db.cjs — Turso (libsql) database setup
-require("dotenv").config({ path: require("path").join(__dirname, "../.env") });
+require("dotenv").config({ path: require("path").join(__dirname, ".env") });
 
 const { createClient } = require("@libsql/client");
 

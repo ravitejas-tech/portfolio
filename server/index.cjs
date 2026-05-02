@@ -1,6 +1,6 @@
 // server/index.cjs — Express backend for Raviteja Salva portfolio
 // Handles contact form submissions and exit-intent leads
-require("dotenv").config({ path: require("path").join(__dirname, "../.env") });
+require("dotenv").config({ path: require("path").join(__dirname, ".env") });
 
 const express = require("express");
 const cors = require("cors");
