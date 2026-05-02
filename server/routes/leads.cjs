@@ -4,7 +4,7 @@ const router = express.Router();
 const { insertLead } = require("../db.cjs");
 
 // POST /api/leads — all fields optional
-router.post("/", (req, res) => {
+router.post("/", async (req, res) => {
   const { name = "", email = "", profession = "" } = req.body ?? {};
 
   // Sanitise lengths
@@ -21,7 +21,7 @@ router.post("/", (req, res) => {
   }
 
   try {
-    insertLead.run(
+    await insertLead(
       name.trim() || null,
       email.trim().toLowerCase() || null,
       profession.trim() || null,

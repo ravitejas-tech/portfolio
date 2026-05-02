@@ -49,9 +49,9 @@ router.post("/login", (req, res) => {
 });
 
 // GET /api/admin/contacts
-router.get("/contacts", requireAdmin, (req, res) => {
+router.get("/contacts", requireAdmin, async (req, res) => {
   try {
-    const rows = getAllContacts.all();
+    const rows = await getAllContacts();
     return res.json(rows);
   } catch (err) {
     console.error("[admin] contacts error:", err);
@@ -60,9 +60,9 @@ router.get("/contacts", requireAdmin, (req, res) => {
 });
 
 // GET /api/admin/leads
-router.get("/leads", requireAdmin, (req, res) => {
+router.get("/leads", requireAdmin, async (req, res) => {
   try {
-    const rows = getAllLeads.all();
+    const rows = await getAllLeads();
     return res.json(rows);
   } catch (err) {
     console.error("[admin] leads error:", err);

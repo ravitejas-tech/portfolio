@@ -62,6 +62,16 @@ export const projects: Project[] = [
       "/screenshots/komark/komark-9.jpg",
       "/screenshots/komark/komark-10.jpg",
     ],
+    links: [
+      {
+        label: "App Store",
+        url: "https://apps.apple.com/us/app/ko-mark/id6741153521",
+      },
+      {
+        label: "Play Store",
+        url: "https://play.google.com/store/search?q=KO%20Mark&c=apps",
+      },
+    ],
   },
   {
     id: "surge",
@@ -108,6 +118,7 @@ export const projects: Project[] = [
       "/screenshots/surge/surge-5.jpg",
       "/screenshots/surge/surge-6.jpg",
     ],
+    links: [{ label: "Open in Telegram", url: "https://t.me/wesurgenowbot" }],
   },
   {
     id: "synergy",
@@ -148,6 +159,16 @@ export const projects: Project[] = [
       "/screenshots/synergy/synergy-1.jpg",
       "/screenshots/synergy/synergy-2.jpg",
       "/screenshots/synergy/synergy-3.jpg",
+    ],
+    links: [
+      {
+        label: "App Store",
+        url: "https://apps.apple.com/in/app/synergy-myt/id6742007565",
+      },
+      {
+        label: "Play Store",
+        url: "https://play.google.com/store/apps/details?id=com.bop.synergy",
+      },
     ],
   },
   {

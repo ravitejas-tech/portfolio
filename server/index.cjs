@@ -5,6 +5,7 @@ require("dotenv").config({ path: require("path").join(__dirname, "../.env") });
 const express = require("express");
 const cors = require("cors");
 
+const { initDb } = require("./db.cjs");
 const contactRouter = require("./routes/contact.cjs");
 const leadsRouter = require("./routes/leads.cjs");
 const adminRouter = require("./routes/admin.cjs");
@@ -44,6 +45,13 @@ app.use((err, req, res, _next) => {
 });
 
 // ── Start ─────────────────────────────────────────────────────────────────────
-app.listen(PORT, () => {
-  console.log(`[server] Running on http://localhost:${PORT}`);
-});
+initDb()
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(`[server] Running on http://localhost:${PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.error("[server] Failed to initialise database:", err);
+    process.exit(1);
+  });

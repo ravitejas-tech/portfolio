@@ -3,7 +3,10 @@ import { AnimatePresence, motion } from "framer-motion";
 
 export function ExitPopup() {
   const [visible, setVisible] = useState(false);
-  const [dismissed, setDismissed] = useState(false);
+  const [dismissed, setDismissed] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return localStorage.getItem("exit_popup_dismissed") === "1";
+  });
   const [form, setForm] = useState({ name: "", email: "", profession: "" });
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState("");
@@ -44,6 +47,7 @@ export function ExitPopup() {
   const dismiss = () => {
     setVisible(false);
     setDismissed(true);
+    localStorage.setItem("exit_popup_dismissed", "1");
   };
 
   const handleSubmit = async (e: React.FormEvent) => {

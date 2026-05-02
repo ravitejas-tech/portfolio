@@ -4,7 +4,7 @@ const router = express.Router();
 const { insertContact } = require("../db.cjs");
 
 // POST /api/contact
-router.post("/", (req, res) => {
+router.post("/", async (req, res) => {
   const { name, email, message } = req.body ?? {};
 
   if (!name || !email || !message) {
@@ -25,7 +25,11 @@ router.post("/", (req, res) => {
   }
 
   try {
-    insertContact.run(name.trim(), email.trim().toLowerCase(), message.trim());
+    await insertContact(
+      name.trim(),
+      email.trim().toLowerCase(),
+      message.trim(),
+    );
     return res.status(201).json({ ok: true, message: "Message received." });
   } catch (err) {
     console.error("[contact] DB error:", err);

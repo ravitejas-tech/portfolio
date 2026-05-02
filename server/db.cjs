@@ -1,44 +1,61 @@
-// server/db.cjs — SQLite database setup
-// Uses better-sqlite3 for synchronous, lightweight storage
-const Database = require("better-sqlite3");
-const path = require("path");
+// server/db.cjs — Turso (libsql) database setup
+require("dotenv").config({ path: require("path").join(__dirname, "../.env") });
 
-const DB_PATH = path.join(__dirname, "portfolio.db");
+const { createClient } = require("@libsql/client");
 
-const db = new Database(DB_PATH);
+const db = createClient({
+  url: process.env.TURSO_DATABASE_URL,
+  authToken: process.env.TURSO_AUTH_TOKEN,
+});
 
-// Enable WAL mode for better concurrent read performance
-db.pragma("journal_mode = WAL");
+async function initDb() {
+  await db.executeMultiple(`
+    CREATE TABLE IF NOT EXISTS contacts (
+      id         INTEGER PRIMARY KEY AUTOINCREMENT,
+      name       TEXT    NOT NULL,
+      email      TEXT    NOT NULL,
+      message    TEXT    NOT NULL,
+      created_at TEXT    NOT NULL DEFAULT (datetime('now'))
+    );
+    CREATE TABLE IF NOT EXISTS leads (
+      id          INTEGER PRIMARY KEY AUTOINCREMENT,
+      name        TEXT,
+      email       TEXT,
+      profession  TEXT,
+      created_at  TEXT NOT NULL DEFAULT (datetime('now'))
+    );
+  `);
+}
 
-// Create tables if they don't exist
-db.exec(`
-  CREATE TABLE IF NOT EXISTS contacts (
-    id        INTEGER PRIMARY KEY AUTOINCREMENT,
-    name      TEXT    NOT NULL,
-    email     TEXT    NOT NULL,
-    message   TEXT    NOT NULL,
-    created_at TEXT   NOT NULL DEFAULT (datetime('now'))
-  );
+async function insertContact(name, email, message) {
+  await db.execute({
+    sql: "INSERT INTO contacts (name, email, message) VALUES (?, ?, ?)",
+    args: [name, email, message],
+  });
+}
 
-  CREATE TABLE IF NOT EXISTS leads (
-    id          INTEGER PRIMARY KEY AUTOINCREMENT,
-    name        TEXT,
-    email       TEXT,
-    profession  TEXT,
-    created_at  TEXT NOT NULL DEFAULT (datetime('now'))
-  );
-`);
+async function insertLead(name, email, profession) {
+  await db.execute({
+    sql: "INSERT INTO leads (name, email, profession) VALUES (?, ?, ?)",
+    args: [name, email, profession],
+  });
+}
 
-// Prepared statements
-const insertContact = db.prepare(
-  "INSERT INTO contacts (name, email, message) VALUES (?, ?, ?)",
-);
+async function getAllContacts() {
+  const result = await db.execute("SELECT * FROM contacts ORDER BY id DESC");
+  return result.rows;
+}
 
-const insertLead = db.prepare(
-  "INSERT INTO leads (name, email, profession) VALUES (?, ?, ?)",
-);
+async function getAllLeads() {
+  const result = await db.execute("SELECT * FROM leads ORDER BY id DESC");
+  return result.rows;
+}
 
-const getAllContacts = db.prepare("SELECT * FROM contacts ORDER BY id DESC");
-const getAllLeads = db.prepare("SELECT * FROM leads ORDER BY id DESC");
-
-module.exports = { db, insertContact, insertLead, getAllContacts, getAllLeads };
+module.exports = {
+  db,
+  initDb,
+  insertContact,
+  insertLead,
+  getAllContacts,
+  getAllLeads,
+};

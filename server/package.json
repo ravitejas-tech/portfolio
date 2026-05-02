@@ -6,7 +6,7 @@
     "start": "node index.cjs"
   },
   "dependencies": {
-    "better-sqlite3": "^12.9.0",
+    "@libsql/client": "^0.17.3",
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1"

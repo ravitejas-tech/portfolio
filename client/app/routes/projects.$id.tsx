@@ -206,31 +206,33 @@ export default function ProjectDetail() {
             </p>
 
             <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
-              {project.links && project.links.length > 0 && (
-                <a
-                  href={project.links[0].url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    padding: "10px 24px",
-                    background: "#E8001A",
-                    color: "white",
-                    fontSize: "13px",
-                    fontWeight: 600,
-                    textDecoration: "none",
-                    letterSpacing: "0.05em",
-                    transition: "background 0.2s",
-                  }}
-                  onMouseEnter={(e) =>
-                    (e.currentTarget.style.background = "#c70016")
-                  }
-                  onMouseLeave={(e) =>
-                    (e.currentTarget.style.background = "#E8001A")
-                  }
-                >
-                  {project.links[0].label} ↗
-                </a>
-              )}
+              {project.links &&
+                project.links.map((link) => (
+                  <a
+                    key={link.url}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      padding: "10px 24px",
+                      background: "#E8001A",
+                      color: "white",
+                      fontSize: "13px",
+                      fontWeight: 600,
+                      textDecoration: "none",
+                      letterSpacing: "0.05em",
+                      transition: "background 0.2s",
+                    }}
+                    onMouseEnter={(e) =>
+                      (e.currentTarget.style.background = "#c70016")
+                    }
+                    onMouseLeave={(e) =>
+                      (e.currentTarget.style.background = "#E8001A")
+                    }
+                  >
+                    {link.label} ↗
+                  </a>
+                ))}
               <Link
                 to="/#contact"
                 style={{
