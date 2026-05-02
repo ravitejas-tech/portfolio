@@ -7,6 +7,7 @@ const cors = require("cors");
 
 const contactRouter = require("./routes/contact.cjs");
 const leadsRouter = require("./routes/leads.cjs");
+const adminRouter = require("./routes/admin.cjs");
 
 const app = express();
 const PORT = process.env.SERVER_PORT || 3001;
@@ -29,6 +30,7 @@ app.get("/api/health", (_, res) => {
 
 app.use("/api/contact", contactRouter);
 app.use("/api/leads", leadsRouter);
+app.use("/api/admin", adminRouter);
 
 // 404 fallback
 app.use((_, res) => {

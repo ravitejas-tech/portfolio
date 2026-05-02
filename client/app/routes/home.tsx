@@ -39,7 +39,7 @@ const TECH_CATEGORIES = [
   },
   {
     label: "DevOps",
-    items: ["AWS", "Digital Ocean", "Docker", "Nginx"],
+    items: ["Digital Ocean", "Docker"],
   },
   {
     label: "Integrations",
@@ -170,9 +170,7 @@ const TECH_ROW_1 = [
 
 const TECH_ROW_2 = [
   { name: "Supabase", slug: "supabase" },
-  { name: "AWS", slug: "amazonaws" },
   { name: "Docker", slug: "docker" },
-  { name: "Nginx", slug: "nginx" },
   { name: "Digital Ocean", slug: "digitalocean" },
   { name: "Razorpay", slug: "razorpay" },
   { name: "Telegram", slug: "telegram" },
@@ -921,8 +919,8 @@ function StackSection() {
           }}
         >
           React · React Native · Next.js · TypeScript · Node.js · Express ·
-          NestJS · PostgreSQL · Supabase · AWS · Docker · Nginx · Digital Ocean
-          · Razorpay · Radar.io · Telegram SDK · TON Wallet
+          NestJS · PostgreSQL · Supabase · Docker · Digital Ocean · Razorpay ·
+          Radar.io · Telegram SDK · TON Wallet
         </p>
       </RevealBlock>
     </section>
@@ -1586,11 +1584,11 @@ function ContactSection() {
               {[
                 {
                   label: "GitHub",
-                  href: "https://github.com/ravitejas",
+                  href: "https://github.com/ravitejas-tech",
                 },
                 {
                   label: "LinkedIn",
-                  href: "https://linkedin.com/in/raviteja-salva",
+                  href: "https://www.linkedin.com/in/raviteja-salva-8a1464272/",
                 },
               ].map((s) => (
                 <a
@@ -1636,7 +1634,7 @@ function ContactSection() {
               letterSpacing: "0.1em",
             }}
           >
-            BUILT WITH REACT ROUTER · THREE.JS · FRAMER MOTION
+            DEVELOPED BY RAVITEJA SALVA
           </span>
         </div>
       </footer>
