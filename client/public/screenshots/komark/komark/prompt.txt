@@ -1,0 +1,215 @@
+Build a **cinematic, scroll-driven 3D portfolio website** for **Raviteja Salva** — a full-stack developer. This should feel like an interactive film, not a webpage. The 3D environment is the soul of this site — every section transition is a 3D cinematic moment. The AI has **complete creative freedom** over all design, layout, animation choreography, and 3D storytelling decisions. The only constraints are the color palette, font, and the scroll-driven 3D narrative direction described below.
+
+---
+
+## 🎨 Visual Identity
+
+**Color Palette:**
+- Background: `#000000`
+- Primary Accent: Bright Red (`#E8001A`)
+- Text/UI: `#FFFFFF`
+- All 3D objects: **Grayscale / wireframe / black & white only** — no color on 3D assets
+
+**Typography:** Poppins (all weights). AI decides sizing, hierarchy, and layout treatment.
+
+**Aesthetic:** Cinematic brutalist dark. AWWWARDS-level. Intentional. Unforgettable.
+
+---
+
+## 🎬 The Core Idea: Scroll-Driven 3D Cinematic Storytelling
+
+The entire website is one continuous **scroll-driven 3D journey**. The camera moves through a living 3D world. Sections don't "appear" — they are **revealed** as the user travels through the scene.
+
+Use **`@react-three/fiber`**, **`@react-three/drei`**, **GSAP ScrollTrigger**, and **Lenis smooth scroll** to orchestrate this.
+
+### The Narrative Arc (AI decides exact choreography, timing, easing, and staging):
+
+**Act 1 — Hero**
+A laptop sits on the left side of the scene, slightly angled, screen glowing. The user's photo is displayed on the laptop screen. Hero text floats on the right. The scene breathes — subtle ambient float, mouse parallax. Everything feels alive.
+
+**Act 2 — The Pull**
+As the user begins scrolling, the camera starts a slow cinematic pull toward the laptop. The laptop gradually moves to the center of the viewport. The hero text fades and dissolves. The camera continues drifting — closer, closer — until it passes *through* the laptop screen. A portal moment.
+
+**Act 3 — About**
+The camera emerges on the other side of the screen into a new environment — the About section world. This could be a desk scene, a void with floating code, a dark room — AI decides. Ravi's bio and details appear here, anchored in this new 3D space.
+
+**Act 4 — Tech / Tools World**
+As scrolling continues, the camera drifts through a floating graveyard of developer artifacts — a mechanical keyboard, a mouse, circuit fragments, `{ }` glyphs, terminal cursors, floating code lines. Each object drifts past the camera like debris in space. Tech stack information is revealed as these objects float by.
+
+**Act 5 — Projects**
+The camera arrives at a "gallery wall" or architectural space — project cards exist as physical objects in the 3D world. Hovering tilts them. Clicking navigates to individual project detail pages.
+
+**Act 6 — Contact / Landing Zone**
+The camera slows, settles. The environment calms. Contact form appears. Clean. Minimal. End of journey.
+
+> **This is a directional brief, not a script.** The AI should treat this as inspiration and execute its own cinematic vision. The camera path, easing curves, object placement, scene composition, lighting moods, transition effects — all of it is the AI's creative call. If a better storytelling idea exists, use it.
+
+---
+
+## 🌐 3D Scene Details
+
+**Objects to include (AI decides placement, scale, animation behavior):**
+- Laptop (hero anchor — Ravi's photo on screen)
+- Mechanical keyboard
+- Computer mouse
+- EV bike / car silhouette (nods to Yugo Rides)
+- Code glyphs: `{ }`, `< />`, `//`, `> _`
+- Circuit board fragments
+- Floating holographic code lines / terminal text
+- Particle field (white dots, subtle drift)
+
+**All objects:** Grayscale, wireframe, or low-poly monochrome. No color tinting.
+
+**Sources:** GLTF/GLB models from Sketchfab (free/CC), market.pmnd.rs, drei's built-in primitives, or procedurally generated. Credit sources in code comments.
+
+**3D Behavior rules:**
+- Mouse parallax on all floating objects
+- Scroll = camera movement (not section jumping)
+- Depth layers: foreground moves faster than background
+- Lighting: dramatic — single key light, deep shadows, red rim light as accent
+- No flat scenes — everything has depth, atmosphere, fog
+
+---
+
+## 🧭 Pages & Content
+
+### Single-Page Scroll Experience
+All sections live on one scroll canvas (`/`). The 3D scene is continuous. UI content layers over it.
+
+### Individual Project Pages (`/projects/:id`)
+React Router nested routes. Full detail pages per project. These can step outside the 3D scroll world — cleaner layout, focus on content, screenshots, tech breakdown.
+
+**Projects:**
+1. **KO Mark** (Coca-Cola) — Global marketing platform used in 119 countries, Instagram-like for bottlers. Built Missions + Leaderboard features at scale. Live on Play Store & App Store.
+2. **Surge** (AltCoin Buzz) — Tinder-inspired crypto prediction Telegram Mini App. 300K daily requests. Built frontend + backend: CoinGecko APIs, chat, leaderboards, tasks, multi-currency, mining, TON Wallet, Twitter auth, Digital Ocean deployment. Live on Telegram.
+3. **Synergy Medical Yoga** — Appointment booking for therapists. Full-stack ownership: booking flow, Cashfree payments, multi-role system, case files. Deployed on Digital Ocean, Play Store & App Store.
+4. **Yugo Rides** — EV bike rental platform. Architect role: full system design, team lead, IoT battery APIs, Radar.io + Google Maps, nearby stations, route calculation, booking lifecycle, KYC, Razorpay. Ongoing.
+5. **Lucky Luxury PG** *(Freelance)* — PG management app: rents, beds, rooms, expenses, notifications. React JS + Supabase. Live.
+6. **Gitmomos** *(Personal)* — CLI tool that reads git commit messages → generates human-readable daily work reports → displays on a personal dashboard. Planned: npm publish, open source. Ongoing. React + Node.js + Supabase.
+
+**Each project page includes:**
+- Hero with name + one-liner
+- Full project story
+- Role, responsibilities, challenges, solutions
+- Screenshot gallery (placeholder slots — `/public/screenshots/project-name-N.png`)
+- Tech stack used
+- Live status badge
+- Back to home
+
+---
+
+## 🗣️ Tone & Copy
+
+**Voice:** Senior dev energy. Dry wit. Confident without being cringe. Memer-adjacent but controlled — max 1–2 personality moments per section, not a comedy show.
+
+**Never:** "passionate developer", "love solving problems", "team player", "results-driven". Ever.
+
+**Let the work do the bragging.** The site's visual quality is the flex. The copy is just the label on the trophy.
+
+**Tagline direction (AI picks or riffs):**
+- *"Full-stack. All receipts. Zero fluff."*
+- *"I write code that runs in 119 countries. What's up."*
+- *"Currently: making scalable systems. Previously: also making scalable systems."*
+
+Section headers can be slightly playful: *"Things I've Actually Shipped"*, *"What I Work With (And Don't Regret)"*, *"End of Scroll. Start of Conversation."*
+
+---
+
+## 🤖 AI Assistant (Gemini)
+
+- Floating chat button — bottom right, red glow, subtle pulse
+- Opens a chat drawer / modal
+- Uses **Google Gemini API** (Gemini 1.5 Flash, free tier)
+- System prompt fed with all of Ravi's project and skill context
+- Answers only questions about Ravi — his work, stack, availability, projects
+- UI: terminal-chat hybrid — dark bg, red cursor blink, Poppins, monospaced feel
+- Quick-prompt chips: *"What has he built?"*, *"What's his stack?"*, *"Is he available?"*
+- Gemini API key via `.env` — never hardcoded
+
+---
+
+## 📬 Contact & Backend
+
+**Contact Form (on-page):**
+- Fields: Name, Email, Message
+- Submits to local Express backend
+- Success toast on submit
+
+**Backend (`/server` folder):**
+- Node.js + Express.js + `better-sqlite3`
+- Routes: `POST /api/contact`, `POST /api/leads`, `GET /api/health`
+- CORS enabled
+
+**Exit-Intent Popup:**
+- Triggers on cursor approaching browser top
+- Headline: *"Wait — let's stay connected"* (or AI picks something better)
+- Fields: Name, Email, Profession — all optional
+- Posts to `POST /api/leads`
+- ESC key + X closes it
+- Styled like a terminal card on dark overlay
+
+---
+
+## ⚙️ Tech Stack
+
+**Frontend:**
+- React Router Framework (v7, framework mode)
+- `@react-three/fiber` + `@react-three/drei`
+- GSAP + ScrollTrigger (scroll-camera orchestration)
+- `lenis` (smooth scroll)
+- `framer-motion` (UI transitions)
+- Tailwind CSS (layout utility)
+- Poppins via Google Fonts
+
+**Backend:**
+- Node.js + Express.js + `better-sqlite3`
+
+**AI:**
+- `@google/generative-ai` (Gemini 1.5 Flash)
+
+---
+
+## 📁 Suggested Folder Structure
+
+portfolio/
+├── app/
+│   ├── routes/
+│   │   ├── _index.tsx              # Main scroll canvas
+│   │   └── projects.$id.tsx        # Project detail pages
+│   ├── components/
+│   │   ├── Scene3D/                # Three.js world + camera rig
+│   │   │   ├── CameraRig.tsx       # Scroll-driven camera path
+│   │   │   ├── LaptopObject.tsx
+│   │   │   ├── DevArtifacts.tsx    # Keyboard, mouse, etc.
+│   │   │   └── Particles.tsx
+│   │   ├── AIAssistant/
+│   │   ├── ExitPopup/
+│   │   ├── ContactForm/
+│   │   ├── ProjectCard/
+│   │   └── Navbar/
+│   ├── data/projects.ts
+│   └── styles/globals.css
+├── server/
+│   ├── index.js
+│   ├── db.js
+│   └── routes/
+├── public/
+│   ├── models/                     # GLTF files
+│   ├── screenshots/                # Drop real screenshots here
+│   └── ravi.jpg                    # Photo for laptop screen
+└── .env                            # GEMINI_API_KEY
+
+
+---
+
+## ✅ Final Notes
+
+- Mobile: 3D scene degrades gracefully (simpler geometry, no scroll-camera, static hero)
+- Screenshot slots are placeholders — Ravi will add real images
+- All 3D model sources credited in comments
+- SEO meta per page
+- `.env.example` included
+- The design, layout, spacing, animation choreography, camera path, scene composition — **all creative decisions belong to the AI.** The brief above is a starting point. If a better idea exists, use it.
+- The projects related screenshots are there in this directory in the screenshots folder, feel free to rename image filenames to smaller if needed
+- The Ravi image is there in ravi's folder please rename that file name.
+---

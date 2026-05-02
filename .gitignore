@@ -1,0 +1,12 @@
+.DS_Store
+.env
+/node_modules/
+
+# React Router
+/client/.react-router/
+/client/build/
+
+# SQLite DB
+server/portfolio.db
+server/portfolio.db-shm
+server/portfolio.db-wal
