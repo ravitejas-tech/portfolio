@@ -131,6 +131,64 @@ When someone asks if Ravi knows a specific technology, language, or tool:
 4. Never guess or fabricate experience. Honesty here builds trust.
 5. If the technology is adjacent to something he does know, mention that too — e.g., if asked about PostgreSQL, note he has deep MySQL experience and the transition would be straightforward.`;
 
+function renderInline(text: string): React.ReactNode[] {
+  const parts = text.split(/(\*\*[^*]+\*\*)/g);
+  return parts.map((part, i) => {
+    if (part.startsWith("**") && part.endsWith("**")) {
+      return (
+        <strong key={i} style={{ color: "#ffffff", fontWeight: 600 }}>
+          {part.slice(2, -2)}
+        </strong>
+      );
+    }
+    return part;
+  });
+}
+
+function renderMarkdown(text: string): React.ReactNode[] {
+  const lines = text.split("\n");
+  const elements: React.ReactNode[] = [];
+  let listItems: string[] = [];
+
+  const flushList = (key: number) => {
+    if (listItems.length > 0) {
+      elements.push(
+        <ul
+          key={`ul-${key}`}
+          style={{ margin: "4px 0", paddingLeft: "16px", listStyle: "disc" }}
+        >
+          {listItems.map((item, i) => (
+            <li key={i} style={{ marginBottom: "2px" }}>
+              {renderInline(item)}
+            </li>
+          ))}
+        </ul>,
+      );
+      listItems = [];
+    }
+  };
+
+  lines.forEach((line, i) => {
+    if (line.startsWith("* ") || line.startsWith("- ")) {
+      listItems.push(line.slice(2));
+    } else {
+      flushList(i);
+      if (line.trim() === "") {
+        if (elements.length > 0) elements.push(<br key={`br-${i}`} />);
+      } else {
+        elements.push(
+          <p key={`p-${i}`} style={{ margin: "2px 0" }}>
+            {renderInline(line)}
+          </p>,
+        );
+      }
+    }
+  });
+  flushList(lines.length);
+
+  return elements;
+}
+
 export function AIAssistant() {
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
@@ -395,7 +453,7 @@ export function AIAssistant() {
                           {">"}
                         </span>
                       )}
-                      {m.text}
+                      {m.role === "model" ? renderMarkdown(m.text) : m.text}
                     </div>
                   </div>
                 ))}
