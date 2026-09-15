@@ -64,8 +64,8 @@ body::before {
    ============================================================ */
 
 .text-hero {
-  font-size: clamp(2.75rem, 7vw, 6.5rem);
-  line-height: 0.95;
+  font-size: clamp(2.25rem, 4.6vw, 4.25rem);
+  line-height: 1.05;
   letter-spacing: -0.03em;
   font-weight: 700;
 }

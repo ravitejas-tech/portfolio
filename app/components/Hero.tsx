@@ -61,7 +61,7 @@ export function Hero() {
 
             {/* Main Headline */}
             <motion.h1
-              className="text-hero max-w-[760px] mb-6 tracking-tight text-[var(--color-text)]"
+              className="text-hero max-w-[620px] lg:max-w-none mb-6 tracking-tight text-[var(--color-text)]"
               variants={containerVariants}
               initial="hidden"
               animate="visible"
@@ -178,21 +178,14 @@ export function Hero() {
                   <img
                     src={PERSONAL.avatarUrl}
                     alt={`${PERSONAL.name}, ${PERSONAL.role}`}
-                    width={1020}
-                    height={1008}
+                    width={1254}
+                    height={1254}
                     loading="eager"
-                    className="w-full h-full object-cover object-top"
+                    className="w-full h-full object-cover object-[60%_20%]"
                   />
 
-                  {/* Edge vignette blends the studio backdrop into the page */}
-                  <div
-                    className="absolute inset-0 pointer-events-none"
-                    style={{
-                      background:
-                        "radial-gradient(ellipse at 50% 35%, transparent 35%, rgba(10,10,11,0.55) 100%)",
-                    }}
-                  />
-                  <div className="absolute inset-x-0 bottom-0 h-24 pointer-events-none bg-gradient-to-t from-[var(--color-bg-card)] to-transparent" />
+                  {/* Gentle bottom fade into the caption bar */}
+                  <div className="absolute inset-x-0 bottom-0 h-20 pointer-events-none bg-gradient-to-t from-[var(--color-bg-card)]/70 to-transparent" />
                 </div>
 
                 {/* Caption bar */}
