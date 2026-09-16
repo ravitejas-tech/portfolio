@@ -6,6 +6,7 @@ import { FeaturedWork } from "~/components/FeaturedWork";
 
 import { LabSection } from "~/components/LabSection";
 import { TechCapabilities } from "~/components/TechCapabilities";
+import { EducationSection } from "~/components/Education";
 import { About } from "~/components/About";
 import { Contact, Footer } from "~/components/Contact";
 
@@ -51,7 +52,10 @@ export default function Home() {
         {/* 5. Technical Arsenal & Capabilities */}
         <TechCapabilities />
 
-        {/* 6. About Narrative */}
+        {/* 6. Education */}
+        <EducationSection />
+
+        {/* 7. About Narrative */}
         <About />
 
         {/* 7. Contact & Socials */}

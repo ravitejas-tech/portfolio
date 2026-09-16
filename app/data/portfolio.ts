@@ -458,11 +458,74 @@ export const ENGINEERING_PHASES: EngineeringPhase[] = [
   },
 ];
 
+export interface Education {
+  degree: string;
+  field: string;
+  institution: string;
+  location: string;
+  board: string;
+  score: string;
+  scoreLabel: string;
+  period: string;
+  icon: "graduation" | "book" | "school";
+  highlights?: string[];
+}
+
+export const EDUCATION: Education[] = [
+  {
+    degree: "Bachelor's Degree",
+    field: "BSc Computer Science",
+    institution: "Sri Vasavi Kanyakaparameswari Degree College",
+    location: "Cumbum, AP",
+    board: "Acharya Nagarjuna University",
+    score: "7.5",
+    scoreLabel: "CGPA",
+    period: "2021 – 2024",
+    icon: "graduation",
+    highlights: [
+      "Specialized in Computer Science fundamentals",
+      "Data Structures, Algorithms & Database Management",
+      "Software Engineering & Operating Systems",
+    ],
+  },
+  {
+    degree: "Intermediate",
+    field: "MPC (Maths, Physics, Chemistry)",
+    institution: "Sri Pratibha Junior College",
+    location: "Ongole, AP",
+    board: "Andhra Pradesh Board",
+    score: "93%",
+    scoreLabel: "Percentage",
+    period: "2019 – 2021",
+    icon: "book",
+    highlights: [
+      "Mathematics, Physics & Chemistry stream",
+      "Scored distinction with 93% aggregate",
+    ],
+  },
+  {
+    degree: "High School",
+    field: "10th Grade (SSC)",
+    institution: "Sri Srinivasa Aided High School",
+    location: "Cumbum, AP",
+    board: "Andhra Pradesh Board",
+    score: "9.8",
+    scoreLabel: "CGPA",
+    period: "2014 – 2019",
+    icon: "school",
+    highlights: [
+      "Exceptional academic performance — 9.8 CGPA",
+      "Strong foundation in Mathematics & Sciences",
+    ],
+  },
+];
+
 export const NAV_LINKS = [
   { label: "Experience", href: "#experience" },
   { label: "Work", href: "#work" },
   { label: "Lab", href: "#lab" },
   { label: "Stack", href: "#stack" },
+  { label: "Education", href: "#education-section" },
   { label: "About", href: "#about" },
   { label: "Contact", href: "#contact" },
 ];
